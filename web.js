@@ -3,7 +3,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 var indexBuffer = new Buffer(30);
-var indexText = fs.readSync("index.html",indexBuffer);
+var indexText = fs.readFileSync("index.html",indexBuffer);
 
 app.get('/', function(request, response) {
    response.send(indexBuffer.toString());
