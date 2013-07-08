@@ -23,6 +23,8 @@ var program = require('commander');
 var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
+var sys = require('util');
+var rest = require('/restler');
 
 var assertFileExists = function(infile){
 	var instr = infile.toString();
@@ -52,6 +54,7 @@ var checkHtmlFile = function(htmlfile, checksfile){
 	return out;
 }
 
+
 var clone = function(fn){
 	// Workaround for commander.js issue
 	// http://stackoverflow.com/a/6772648
@@ -64,7 +67,8 @@ if(require.main == module){
 			CHECKSFILE_DEFAULT)
 
 		.option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), 				HTMLFILE_DEFAULT)
-        	.parse(process.argv);
+        	.option('-u, --url <url_location>','Path to URL input',clone(assertFileExists)
+		.parse(process.argv);
     	var checkJson = checkHtmlFile(program.file, program.checks);
     	var outJson = JSON.stringify(checkJson, null, 4);
     	console.log(outJson);
