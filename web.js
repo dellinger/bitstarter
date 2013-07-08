@@ -2,11 +2,10 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
-var indexBuffer = new Buffer(30);
-var indexText = fs.readFileSync("index.html",indexBuffer);
+var indexBuffer = new Buffer();
 
 app.get('/', function(request, response) {
-   response.send(indexBuffer.toString());
+   response.send(indexBuffer.toString("utc 8", fs.readFileSync("index.html");
 });
 
 var port = process.env.PORT || 5000;
