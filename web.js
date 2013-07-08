@@ -3,6 +3,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 var indexBuffer = new Buffer();
+var fs = require('fs');
 
 app.get('/', function(request, response) {
    response.send(indexBuffer.toString("utc 8", fs.readFileSync("index.html");
